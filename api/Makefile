@@ -2,4 +2,4 @@ build:
 	docker build -t sc-api .
 
 run:
-	docker run --rm sc-api
+	docker run --rm -p 5010:5010 sc-api

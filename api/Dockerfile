@@ -8,10 +8,10 @@ RUN python -m pip install --no-cache-dir -r requirements.txt
 RUN apt-get update && apt-get install -y \
     gunicorn \
     swi-prolog \
+    tesseract-ocr \
  && rm -rf /var/lib/apt/lists/*
 
 COPY . .
-COPY prolog /api/prolog
 
 EXPOSE 5010
 CMD ["python", "-m", "gunicorn",  "-k",  "uvicorn.workers.UvicornWorker", "main:app", "--bind",  "0.0.0.0:5010", "--workers", "4"]
