@@ -1,6 +1,7 @@
 pytesseract
-OpenCV-python
+opencv-python-headless
 pyswip
 fastapi
+gunicorn
 uvicorn
 python-multipart
