@@ -4,10 +4,10 @@ services:
     build: ./api
     image: sc-api:latest
     labels:
-      - "traefik.http.routers.api.rule=Host(`safe-api.pointbeing.net`)"
-      - "traefik.http.routers.api.tls=true"
-      - "traefik.http.routers.api.tls.certresolver=letsencrypt"
-      - "traefik.http.services.api.loadbalancer.server.port=5010"
+      - "traefik.http.routers.scapi.rule=Host(`safe-api.pointbeing.net`)"
+      - "traefik.http.routers.scapi.tls=true"
+      - "traefik.http.routers.scapi.tls.certresolver=letsencrypt"
+      - "traefik.http.services.scapi.loadbalancer.server.port=5010"
     networks:
       - traefik_default
     ports:
@@ -16,12 +16,12 @@ services:
 
   web:
     build: ./site
-    image: cs-site:latest
+    image: sc-site:latest
     labels:
-      - "traefik.http.routers.web.rule=Host(`safe.pointbeing.net`)"
-      - "traefik.http.routers.web.tls=true"
-      - "traefik.http.routers.web.tls.certresolver=letsencrypt"
-      - "traefik.http.services.web.loadbalancer.server.port=5011"
+      - "traefik.http.routers.scweb.rule=Host(`safe.pointbeing.net`)"
+      - "traefik.http.routers.scweb.tls=true"
+      - "traefik.http.routers.scweb.tls.certresolver=letsencrypt"
+      - "traefik.http.services.scweb.loadbalancer.server.port=5011"
     networks:
       - traefik_default
     ports:
