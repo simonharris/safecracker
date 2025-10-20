@@ -1,10 +1,3 @@
-test: testprolog
-
-testprolog:
-	@swipl -g "load_files([parser/tests/test_safe_cracker,\
-						  parser/tests/test_grammar,\
-						  parser/tests/test_parser,\
-						  parser/tests/test_solutions]), run_tests" -t halt
 
 
 .PHONY: web
