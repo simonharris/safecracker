@@ -47,6 +47,16 @@ clue_spec(clue(sum, less_than, Ordinal2,  Ordinal3, Ordinal1)) -->
     sum_clause(Ordinal2, Ordinal3),
     !.
 
+% eg. The second and fourth differ by a prime
+% TODO: this could become more general
+clue_spec(clue(Ordinal1, Ordinal2, Func, a_prime)) -->
+    position(Ordinal1),
+    and,
+    position(Ordinal2),
+    function(Func),
+    a_prime,
+    !.
+
 % eg. The third and fourth differ by two
 % eg. The first and third total 13
 % eg. The first and last digits differ by three
@@ -218,6 +228,8 @@ operator(equals) --> be.
 
 sumof --> ['the', 'sum', 'of'].
 minus --> ['minus'].
+
+a_prime --> ['a', 'prime'].
 
 sum_clause(Ordinal1, Ordinal2) -->
     sumof,

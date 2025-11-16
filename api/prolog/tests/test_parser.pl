@@ -41,6 +41,11 @@ test(text_preprocessing6) :-
     Expected = [the, sum, of, the, first, and, second, is, 12],
     assert_output(text_preprocessed(Sentence, Parsed), [Parsed], [Expected]).
 
+test(text_preprocessing7) :-
+    Sentence = 'The second and fourth differ by a prime',
+    Expected = [the, second, and, fourth, differ, by, a, prime],
+    assert_output(text_preprocessed(Sentence, Parsed), [Parsed], [Expected]).
+
 :- end_tests(preprocessing).
 
 
@@ -82,6 +87,11 @@ test(difference_first_two) :-
     atoms_clue(Sentence, Clue),
     assert_type(Clue, clue),
     assert_equals(Clue, clue(first, second, differ_by, 4)).
+test(difference_prime) :-
+    Sentence = [the, second, and, fourth, differ, by, a, prime],
+    atoms_clue(Sentence, Clue),
+    assert_type(Clue, clue),
+    assert_equals(Clue, clue(second, fourth, differ_by, a_prime)).
 
 test(difference_qualified) :-
     Sentence = [the, first, and, second, differ, by, more, than, 4],
@@ -273,6 +283,12 @@ test(clue_constraint_differ_by) :-
     Vs = [A, B, _, _],
     once(clue_constraint(Clue, Vs, Constraint)),
     assert_equals(Constraint, abs(A-B) #= 4).
+
+test(clue_constraint_differ_by_prime) :-
+    Clue = clue(second, fourth, differ_by, a_prime),
+    Vs = [_, B, _, D],
+    once(clue_constraint(Clue, Vs, Constraint)),
+    assert_equals(Constraint, is_prime(abs(B-D))).
 
 test(clue_constraint_sum_lt_col) :-
     Clue = clue(sum, less_than, second, third, fourth),

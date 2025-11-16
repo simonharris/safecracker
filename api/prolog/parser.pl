@@ -78,6 +78,12 @@ clue_constraint(clue(Position1, Position2, Func, Position3), Vars, Constraint) :
     var_for_position(Position3, Vars, Var3),
     sum_rel_constraint(eq, Var1, Var2, Var3, Constraint),
     !.
+% eg. The second and fourth differ by a prime
+clue_constraint(clue(Position1, Position2, Func, a_prime), Vars, Constraint) :-
+    var_for_position(Position1, Vars, Var1),
+    var_for_position(Position2, Vars, Var2),
+    function_constraint(Func, Var1, Var2, a_prime, Constraint),
+    !.
 % eg. The third and fourth differ by two
 % eg. The first and third total 13
 clue_constraint(clue(Position1, Position2, Func, Howmany), Vars, Constraint) :-
