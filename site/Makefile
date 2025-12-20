@@ -7,7 +7,7 @@ fix:
 	rm -f package-lock.json
 
 build:
-	docker build -t cs-site .
+	docker build -t sc-site .
 
 run: build
-	docker run --rm -p 5011:5011 cs-site
+	docker run --rm -p 5011:5011 sc-site
