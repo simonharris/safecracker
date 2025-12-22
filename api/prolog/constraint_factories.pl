@@ -61,3 +61,4 @@ sum_rel_constraint(eq, Var1, Var2, Rhs, (Var1 + Var2) #= Rhs).
 sum_rel_constraint(db, Var1, Var2, Rhs, divides_by((Var1 + Var2), Rhs)).
 
 either_constraint(odd, Var1, Var2, xor(Var1 mod 2 #= 1, Var2 mod 2 #= 1)).
+either_constraint(prime, Var1, Var2, xor_native(is_prime(Var1), is_prime(Var2))).

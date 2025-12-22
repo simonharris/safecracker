@@ -7,7 +7,8 @@
     is_prime/2,
     is_square/1,
     occurrenceof/3,
-    xor/2
+    xor/2,
+    xor_native/2
 ]).
 :- use_module(library(clpfd)).
 :- reexport(library(clpfd)).
@@ -20,6 +21,10 @@ common_constraints(Vs) :-
 
 xor(X, Y) :-
     X #/\ #\Y #\/ #\X #/\ Y.
+
+xor_native(A, B) :-
+    (A, \+B);
+    (B, \+A).
 
 is_prime(Expression) :-
     (   integer(Expression)
