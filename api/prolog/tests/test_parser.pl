@@ -46,6 +46,11 @@ test(text_preprocessing7) :-
     Expected = [the, second, and, fourth, differ, by, a, prime],
     assert_output(text_preprocessed(Sentence, Parsed), [Parsed], [Expected]).
 
+test(text_preprocessing_sum_of_all) :-
+    Sentence = 'The sum of the digits is a square',
+    Expected = [the, sum, of, the, digits, is, a, square],
+    assert_output(text_preprocessed(Sentence, Parsed), [Parsed], [Expected]).
+
 :- end_tests(preprocessing).
 
 
@@ -208,6 +213,11 @@ test(sum_of_equals) :-
     atoms_clue(Sentence, Clue),
     assert_equals(Clue, clue(sum, equals, first, second, 12)).
 
+test(sum_of_all_is_square) :-
+    Sentence = [the, sum, of, the, digits, is, a, square],
+    atoms_clue(Sentence, Clue),
+    assert_equals(Clue, clue(sum_all, square)).
+
 test(either_odd) :-
     Sentence = [either, the, second, or, the, third, is, odd, but, not, both],
     atoms_clue(Sentence, Clue),
@@ -294,7 +304,14 @@ test(clue_constraint_sum_lt_col) :-
     Clue = clue(sum, less_than, second, third, fourth),
     Vs = [_, B, C, D],
     once(clue_constraint(Clue, Vs, Constraint)),
-    writeln(Constraint),
     assert_equals(Constraint, (B+C) #< D).
+
+% TODO
+% test(clue_constraint_sumall_square) :-
+%     Clue = clue(sum_all, square),
+%     Vs = [_, _, _, _],
+%     once(clue_constraint(Clue, Vs, Constraint)),
+%     assert_equals(Constraint, is_square(sum_list(Vs))).
+
 
 :- end_tests(clue_constraint).

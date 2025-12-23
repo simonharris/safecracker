@@ -7,7 +7,8 @@
     qoutcome_constraint/5,
     minus_rel_constraint/5,
     sum_rel_constraint/5,
-    relation_constraint/4
+    relation_constraint/4,
+    sumall_constraint/3
 ]).
 :- use_module(library(clpfd)).
 
@@ -59,6 +60,9 @@ sum_rel_constraint(greater_than, Var1, Var2, Rhs, (Var1 + Var2) #> Rhs).
 sum_rel_constraint(less_than, Var1, Var2, Rhs, (Var1 + Var2) #< Rhs).
 sum_rel_constraint(eq, Var1, Var2, Rhs, (Var1 + Var2) #= Rhs).
 sum_rel_constraint(db, Var1, Var2, Rhs, divides_by((Var1 + Var2), Rhs)).
+
+sumall_constraint(square, Vars, is_square(Sum)) :-
+    sum(Vars, #=, Sum).
 
 either_constraint(odd, Var1, Var2, xor(Var1 mod 2 #= 1, Var2 mod 2 #= 1)).
 either_constraint(prime, Var1, Var2, xor_native(is_prime(Var1), is_prime(Var2))).

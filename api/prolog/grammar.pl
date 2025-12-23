@@ -99,6 +99,18 @@ clue_spec(clue(Outcome, Howmany, Value)) -->
     outcome(Outcome),
     safe_digit(Value),
     !.
+
+% eg. The sum of the digits is a square
+% test(sum_of_all_is_square) :-
+%     Sentence = [the, sum, of, the, digits, is, a, square],
+%     atoms_clue(Sentence, Clue),
+%     assert_equals(Clue, clue(sum_all, square)).
+clue_spec(clue(sum_all, Adj)) -->
+    sum_all,
+    be,
+    adj_clause(Adj),
+    !.
+
 % eg. The sum of the second and third is a square
 % eg. The sum of the first and fourth is square
 % eg. The sum of the first and fourth is prime
@@ -227,6 +239,8 @@ operator(twice) --> ['twice'].
 operator(equals) --> be.
 
 sumof --> ['the', 'sum', 'of'].
+sum_all -->sumof, ['the', 'digits'].
+
 minus --> ['minus'].
 
 a_prime --> ['a', 'prime'].

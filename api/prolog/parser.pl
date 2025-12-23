@@ -189,6 +189,13 @@ clue_constraint(clue(either, Position1, Position2, Adj), Vars, Constraint) :-
     either_constraint(Adj, Var1, Var2, Constraint),
     !.
 
+% all the digits!
+
+% eg. The sum of the digits is a square
+clue_constraint(clue(sum_all, square), Vars, Constraint) :-
+    sumall_constraint(square, Vars, Constraint),
+    !.
+
 
 %% utils ----------------------------------------------------------------------
 
