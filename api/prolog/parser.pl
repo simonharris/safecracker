@@ -20,7 +20,7 @@ apply_clue(Text, Vs) :-
     call(Constraint).
 
 text_preprocessed(Text, Processed) :-
-    strip_commas(Text, CleanText),
+    strip_punctuation(Text, CleanText),
     split_string(CleanText, " ", "", TextList),
     maplist(atom_string, Atoms, TextList),
     maplist(downcase_atom, Atoms, AtomsLower),
@@ -200,10 +200,12 @@ clue_constraint(clue(sum_all, square), Vars, Constraint) :-
 %% utils ----------------------------------------------------------------------
 
 
-strip_commas(String, Stripped) :-
+strip_punctuation(String, Stripped) :-
     atom_chars(String, Chars),
-    exclude(=(','), Chars, StrippedChars),
+    exclude(member_(['(', ')', ',']), Chars, StrippedChars),
     atomics_to_string(StrippedChars, Stripped).
+
+member_(L, E) :- member(E, L).
 
 % nb safe_cracker/divides_by/2
 divisible_by(Divisor, X, B) :- (X mod Divisor #= 0) #<==> B.

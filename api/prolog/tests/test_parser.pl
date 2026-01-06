@@ -51,6 +51,12 @@ test(text_preprocessing_sum_of_all) :-
     Expected = [the, sum, of, the, digits, is, a, square],
     assert_output(text_preprocessed(Sentence, Parsed), [Parsed], [Expected]).
 
+test(text_preprocessing_either_brackets) :-
+    Sentence = 'Either the first or third (not both) is a factor of 20',
+    Expected = [either, the, first, or, third, not, both, is, a, factor, of, 20],
+    assert_output(text_preprocessed(Sentence, Parsed), [Parsed], [Expected]).
+
+
 :- end_tests(preprocessing).
 
 
