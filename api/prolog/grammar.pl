@@ -148,6 +148,18 @@ clue_spec(clue(minus, less_than, Ordinal1, Ordinal2, Howmany)) -->
     lt,
     numeric(Howmany),
     !.
+% eg. Either the first or third (not both) is a factor of 20
+% This could probably be gneralised to the operator//1 cases
+clue_spec(clue(either, Ordinal1, Ordinal2, factor_of, Howmany)) -->
+    either_clause,
+    position(Ordinal1),
+    conj,
+    position(Ordinal2),
+    superfluous_waffle,
+    fo,
+    numeric(Howmany),
+    superfluous_waffle,
+    !.
 % eg. Either the second or the third is odd, but not both
 % eg. Exactly one of the second and third is odd
 clue_spec(clue(either, Ordinal1, Ordinal2, Adj)) -->
@@ -155,6 +167,7 @@ clue_spec(clue(either, Ordinal1, Ordinal2, Adj)) -->
     position(Ordinal1),
     conj,
     position(Ordinal2),
+    superfluous_waffle,
     be,
     adj_clause(Adj),
     superfluous_waffle,
@@ -263,6 +276,7 @@ safe_digit(D) --> [D], { integer(D), between(1, 9, D) }.
 numeric(D) --> [D], { integer(D) }.
 
 superfluous_waffle --> ['but', 'not', 'both'].
+superfluous_waffle --> ['not', 'both'].
 superfluous_waffle --> [].
 
 by --> ['by'].
@@ -285,3 +299,5 @@ lt --> ['is', 'less', 'than'].
 lte --> ['no', 'more', 'than'].
 
 db --> ['is', 'divisible', 'by'].
+
+fo --> ['is', 'a', 'factor', 'of'].

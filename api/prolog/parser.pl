@@ -188,6 +188,12 @@ clue_constraint(clue(either, Position1, Position2, Adj), Vars, Constraint) :-
     var_for_position(Position2, Vars, Var2),
     either_constraint(Adj, Var1, Var2, Constraint),
     !.
+% eg. Either the first or third (not both) is a factor of 20
+clue_constraint(clue(either, Position1, Position2, factor_of, Howmany), Vars, Constraint) :-
+    var_for_position(Position1, Vars, Var1),
+    var_for_position(Position2, Vars, Var2),
+    either_constraint(factor_of, Var1, Var2, Howmany, Constraint),
+    !.
 
 % all the digits!
 

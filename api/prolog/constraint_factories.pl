@@ -1,6 +1,7 @@
 :- module(constraint_factories, [
     adjective_constraint/4,
     either_constraint/4,
+    either_constraint/5,
     function_constraint/5,
     qadj_constraint/4,
     boutcome_constraint/5,
@@ -66,3 +67,4 @@ sumall_constraint(square, Vars, is_square(Sum)) :-
 
 either_constraint(odd, Var1, Var2, xor(Var1 mod 2 #= 1, Var2 mod 2 #= 1)).
 either_constraint(prime, Var1, Var2, xor_native(is_prime(Var1), is_prime(Var2))).
+either_constraint(factor_of, Var1, Var2, Howmany, xor_native(divides_by(Howmany, Var1), divides_by(Howmany, Var2))).

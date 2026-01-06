@@ -56,11 +56,13 @@ test(text_preprocessing_either_brackets) :-
     Expected = [either, the, first, or, third, not, both, is, a, factor, of, 20],
     assert_output(text_preprocessed(Sentence, Parsed), [Parsed], [Expected]).
 
-
 :- end_tests(preprocessing).
 
 
 :- begin_tests(parser).
+
+% These are mainly testing the grammar and clue_spec//1, but they seem to be
+% here as they go via atoms_clue/2. TODO: decide whether this is ideal.
 
 test(clue_01) :-
     Sentence = [the, second, digit, is, less, than, 7],
@@ -236,6 +238,10 @@ test(either_odd2) :-
     Sentence = [exactly, 1, of, the, third, and, fourth, is, odd],
     atoms_clue(Sentence, Clue),
     assert_equals(Clue, clue(either, third, fourth, odd)).
+test(either_factor) :-
+    Sentence = [either, the, first, or, third, not, both, is, a, factor, of, 20],
+    atoms_clue(Sentence, Clue),
+    assert_equals(Clue, clue(either, first, third, factor_of, 20)).
 
 test(exceeds_more_than) :-
     Sentence = [the, second, exceeds, the, first, by, more, than, 2],
@@ -319,5 +325,10 @@ test(clue_constraint_sum_lt_col) :-
 %     once(clue_constraint(Clue, Vs, Constraint)),
 %     assert_equals(Constraint, is_square(sum_list(Vs))).
 
+test(clue_constraint_either_factor) :-
+    Clue = clue(either, first, third, factor_of, 20),
+    Vs = [A, _, C, _],
+    once(clue_constraint(Clue, Vs, Constraint)),
+    assert_equals(Constraint, xor_native(divides_by(20, A), divides_by(20, C))).
 
 :- end_tests(clue_constraint).
