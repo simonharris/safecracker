@@ -30,4 +30,4 @@ solution_20250511(A, B, C, D) :-
     label(Vs).
 
 
-divides_by_3(N, B) :- (N mod 3 #= 0) #<==> B.
+% divides_by_3(N, B) :- (N mod 3 #= 0) #<==> B.
