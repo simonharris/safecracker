@@ -19,6 +19,7 @@
 :- ensure_loaded('../solutions/safe20251123').
 :- ensure_loaded('../solutions/safe20251130').
 :- ensure_loaded('../solutions/safe20251221').
+:- ensure_loaded('../solutions/safe20251228').
 
 
 :- begin_tests(safe_cracker_solutions).
@@ -95,5 +96,7 @@ test(solution_20251130) :-
 test(solution_20251221) :-
     assert_output(once(solution_20251221(A, B, C, D)), [A, B, C, D], [5, 8, 9, 4]).
 
+test(solution_20251228) :-
+    assert_output(once(solution_20251228(A, B, C, D)), [A, B, C, D], [3, 7, 8, 4]).
 
 :- end_tests(safe_cracker_solutions).

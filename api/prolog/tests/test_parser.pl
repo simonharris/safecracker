@@ -216,6 +216,10 @@ test(sum_of_divisible) :-
     Sentence = [the, sum, of, the, second, and, fourth, is, divisible, by, 5],
     atoms_clue(Sentence, Clue),
     assert_equals(Clue, clue(sum, db, second, fourth, 5)).
+test(sum_of_divisible_first_two) :-
+    Sentence = [the, sum, of, the, first, 2, is, divisible, by, 5],
+    atoms_clue(Sentence, Clue),
+    assert_equals(Clue, clue(sum, db, first, second, 5)).
 test(sum_of_equals) :-
     Sentence = [the, sum, of, the, first, and, second, is, 12],
     atoms_clue(Sentence, Clue),

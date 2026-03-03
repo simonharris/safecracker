@@ -234,6 +234,7 @@ ord(fourth) --> ['fourth'].
 ord(fourth) --> ['last'].
 
 first_two --> ['the', 'first', 2, 'digits'].
+first_two --> ['the', 'first', 2].
 
 function(differ_by_less_than) --> ['differ', 'by', 'less', 'than'].
 function(differ_by_more_than) --> ['differ', 'by', 'more', 'than'].
@@ -263,6 +264,10 @@ sum_clause(Ordinal1, Ordinal2) -->
     position(Ordinal1),
     and,
     position(Ordinal2).
+
+sum_clause(first, second) -->
+    sumof,
+    first_two.
 
 minus_clause(Ordinal1, Ordinal2) -->
     position(Ordinal1),
