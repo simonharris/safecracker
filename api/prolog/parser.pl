@@ -206,6 +206,11 @@ clue_constraint(clue(sum_all, square), Vars, Constraint) :-
     sumall_constraint(square, Vars, Constraint),
     !.
 
+% eg. The sum of the digits is divisible by five
+clue_constraint(clue(sum_all, divisible_by, Howmany), Vars, Constraint) :-
+    sumall_constraint(divisible_by(Howmany), Vars, Constraint),
+    !.
+
 
 %% utils ----------------------------------------------------------------------
 

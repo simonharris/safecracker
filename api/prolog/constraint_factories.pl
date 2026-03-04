@@ -66,6 +66,9 @@ sum_rel_constraint(db, Var1, Var2, Rhs, divides_by((Var1 + Var2), Rhs)).
 sumall_constraint(square, Vars, is_square(Sum)) :-
     sum(Vars, #=, Sum).
 
+sumall_constraint(divisible_by(Divisor), Vars, divides_by(Sum, Divisor)) :-
+    sum(Vars, #=, Sum).
+
 either_constraint(odd, Var1, Var2, xor(Var1 mod 2 #= 1, Var2 mod 2 #= 1)).
 either_constraint(prime, Var1, Var2, xor_native(is_prime(Var1), is_prime(Var2))).
 either_constraint(factor_of, Var1, Var2, Howmany, xor_native(divides_by(Howmany, Var1), divides_by(Howmany, Var2))).

@@ -123,6 +123,14 @@ clue_spec(clue(sum_all, Adj)) -->
     adj_clause(Adj),
     !.
 
+% eg. The sum of the digits is divisible by five
+clue_spec(clue(sum_all, divisible_by, Howmany)) -->
+    sum_all,
+    be,
+    ['divisible', 'by'],
+    numeric(Howmany),
+    !.
+
 % eg. The sum of the second and third is a square
 % eg. The sum of the first and fourth is square
 % eg. The sum of the first and fourth is prime
