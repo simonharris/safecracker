@@ -10,6 +10,18 @@
 :- use_module(library(dcg/basics)).
 
 
+% eg. The second is greater than three and less than eight
+clue_spec(clue(Ordinal, between_exclusive, Lower, Upper)) -->
+    position(Ordinal),
+    be,
+    gt,
+    numeric(Lower),
+    and,
+    lt,
+    numeric(Upper),
+    !.
+
+
 % eg. The third digit is less than five
 clue_spec(clue(Ordinal, Operator, Number)) -->
     position(Ordinal),

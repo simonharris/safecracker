@@ -74,6 +74,11 @@ test(clue_02) :-
     atoms_clue(Sentence, Clue),
     assert_equals(Clue, clue(first, greater_than, 5)).
 
+test(clue_range_gt_lt) :-
+    Sentence = [the, second, is, greater, than, 3, and, less, than, 8],
+    atoms_clue(Sentence, Clue),
+    assert_equals(Clue, clue(second, between_exclusive, 3, 8)).
+
 test(adjective) :-
     Sentence = [the, fourth, digit, is, odd],
     atoms_clue(Sentence, Clue),
@@ -281,6 +286,11 @@ test(clue_constraint_odd) :-
     Clue = clue(third, odd),
     once(clue_constraint(Clue, [_, _, C, _], Constraint)),
     assert_equals(Constraint, is_odd(C)).
+
+test(clue_constraint_range_gt_lt) :-
+    Clue = clue(second, between_exclusive, 3, 8),
+    once(clue_constraint(Clue, [_, B, _, _], Constraint)),
+    assert_equals(Constraint, (B #> 3, B #< 8)).
 
 test(clue_constraint_total_number) :-
     Clue = clue(first, third, add_up_to, 13),

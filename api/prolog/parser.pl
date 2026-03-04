@@ -51,6 +51,10 @@ clue_constraint(clue(Position, Relation, Num), Vars, Constraint) :-
     var_for_position(Position, Vars, Var),
     safe_digit_val(Num), % this is a bit fragile
     relation_constraint(Relation, Var, Num, Constraint).
+% eg. The second is greater than three and less than eight
+clue_constraint(clue(Position, between_exclusive, Lower, Upper), Vars, Constraint) :-
+    var_for_position(Position, Vars, Var),
+    Constraint = (Var #> Lower, Var #< Upper).
 % eg. The third digit is less than the second
 % eg. The second is twice the fourth
 clue_constraint(clue(Position1, Relation, Position2), Vars, Constraint) :-
